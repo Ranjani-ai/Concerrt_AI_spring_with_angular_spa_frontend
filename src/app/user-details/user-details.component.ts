@@ -34,7 +34,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   public onAddUser(addForm: NgForm): void {
-    document.getElementById('add-employee-form')?.click();
+    document.getElementById('add-user-form')?.click();
     this.userService.addUser(addForm.value).subscribe(
       (response: User) => {
         console.log(response);
@@ -48,8 +48,8 @@ export class UserDetailsComponent implements OnInit {
     );
   }
 
-  public onUpdateUser(id: any, employee: User): void {
-    this.userService.updateUser(id, employee).subscribe(
+  public onUpdateUser(id: any, user: User): void {
+    this.userService.updateUser(id, user).subscribe(
       (response: User) => {
         console.log(response);
         this.getUsers();
@@ -72,7 +72,7 @@ export class UserDetailsComponent implements OnInit {
     );
   }
 
-  public searchEmployees(key: string): void {
+  public searchusers(key: string): void {
     console.log(key);
     const results: User[] | undefined = [];
     if(this.users)
@@ -89,7 +89,7 @@ export class UserDetailsComponent implements OnInit {
     }
   }
 
-  public onOpenModal(employee: User, mode: string): void {
+  public onOpenModal(user: User, mode: string): void {
     const container = document.getElementById('main-container');
     const button = document.createElement('button');
     button.type = 'button';
@@ -99,11 +99,11 @@ export class UserDetailsComponent implements OnInit {
       button.setAttribute('data-target', '#addUserModal');
     }
     if (mode === 'edit') {
-      this.editUser = employee;
+      this.editUser = user;
       button.setAttribute('data-target', '#updateUserModal');
     }
     if (mode === 'delete') {
-      this.deleteUser = employee;
+      this.deleteUser = user;
       button.setAttribute('data-target', '#deleteUserModal');
     }
     container?.appendChild(button);
