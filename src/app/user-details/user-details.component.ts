@@ -1,27 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from './user.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { User } from './user';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-user-details',
+  templateUrl: './user-details.component.html',
+  styleUrls: ['./user-details.component.css']
+
 })
-export class AppComponent implements OnInit {
+export class UserDetailsComponent implements OnInit {
   public users?: User[];
   public editUser?: User;
   public deleteUser?: User;
-  showPassword = false;
-
-  constructor(private userService: UserService){}
   
+  constructor(private userService: UserService){}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getUsers();
   }
-
 
   public getUsers(): void {
     this.userService.getUsers().subscribe(
@@ -74,7 +72,7 @@ export class AppComponent implements OnInit {
     );
   }
 
-  public searchUsers(key: string): void {
+  public searchEmployees(key: string): void {
     console.log(key);
     const results: User[] | undefined = [];
     if(this.users)
@@ -111,6 +109,4 @@ export class AppComponent implements OnInit {
     container?.appendChild(button);
     button.click();
   }
-
-
- }
+}
